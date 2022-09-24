@@ -1,0 +1,82 @@
+<div class="text-center p-2 mt-2" style="background-color: rgb(59, 32, 232)">
+  <h2 class="title"><i class="fa-solid fa-people-group"></i> Customers</h2>
+</div>
+
+<div class="d-flex mt-5">
+  <input
+    type="text"
+    class="from-control w-25 m-1"
+    placeholder="First Name"
+    [(ngModel)]="custFirstname"
+  />
+  <input
+    type="text"
+    class="from-control w-25 m-1"
+    placeholder="Last Name"
+    [(ngModel)]="custLastname"
+  />
+  <input
+    type="text"
+    class="from-control w-25 m-1"
+    placeholder="Phone"
+    [(ngModel)]="custPhone"
+  />
+
+  <button class="btn btn-primary" (click)="addCustomer()">
+    <i class="fa-solid fa-circle-plus"></i> Add Customer
+  </button>
+</div>
+
+<div
+  *ngIf="
+    customers
+      | filter: 'firstname':custFirstname
+      | filter: 'lastname':custLastname
+      | filter: 'phone':custPhone as customers
+  "
+>
+  <ng-container *ngIf="customers.length != 0; else noCustomer">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>First name</th>
+          <th>Last Name</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>View</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr *ngFor="let customer of customers; index as i">
+          <td>{{ i + 1 }}</td>
+          <td>{{ customer.firstname }}</td>
+          <td>{{ customer.lastname }}</td>
+          <td>{{ customer.phone }}</td>
+          <td>{{ customer.email }}</td>
+          <td>
+            <i
+              class="fa-solid fa-circle-info"
+              (click)="getCustomer(customer)"
+            ></i>
+          </td>
+          <td>
+            <i
+              class="fa-solid fa-pen-to-square text-primary"
+              (click)="updateCustomer(customer)"
+            ></i>
+          </td>
+          <td>
+            <i
+              class="fa-solid fa-trash text-danger"
+              (click)="deleteCustomer(customer)"
+            ></i>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </ng-container>
+  <ng-template #noCustomer> No customer found </ng-template>
+</div>

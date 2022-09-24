@@ -1,0 +1,47 @@
+<div class="text-center p-2" style="background-color: rgb(59, 32, 232)">
+     <h2 class="title">
+        <i class="fa-solid fa-address-card"></i>
+        Contacts 
+      </h2>
+        <small>Company's Contacts Information.</small>
+</div>
+<div class="d-flex mt-5">
+  <input type="text" class="from-control w-25 m-1" placeholder="Name" [(ngModel)]="prodName"/>
+    <input type="text" class="from-control w-25 m-1" placeholder="Email" [(ngModel)]="prodEmail"/>
+
+</div>
+<div *ngIf="contact | filterContact:'name': prodName | filterContact:'email': prodEmail as contacts">
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Birthday</th>
+        <th>Phones</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr *ngFor="let contact of contacts; index as i">
+        <td>{{ i + 1 }}</td>
+        <td>
+          <img [src]="contact.image" width="50" /> {{ contact.name }}
+        </td>
+        <td>{{ contact.email }}</td>
+        <td>
+          {{ contact.birthday | date: "dd" }}/{{
+            contact.birthday | date: "MM"
+          }}/{{ contact.birthday | date: "yyyy" }}
+        </td>
+        <td>
+            <ul>
+                <li *ngFor="let phone of contact.phones">
+                    {{phone}}
+                </li>
+            </ul>
+        </td>
+      </tr>
+    </tfoot>
+    
+  </table>
+  </div>

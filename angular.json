@@ -94,6 +94,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "mycrm-lital:build:production",
+            "firebaseProject": "mycrm-lital-bb9f0",
+            "firebaseHostingSite": "mycrm-lital-bb9f0"
+          }
         }
       }
     }

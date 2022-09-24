@@ -1,0 +1,21 @@
+{
+  "targets": {
+    "mycrm-lital-bb9f0": {
+      "hosting": {
+        "mycrm-lital": [
+          "mycrm-lital-bb9f0"
+        ]
+      }
+    },
+    "lital-mycrm": {
+      "hosting": {
+        "mycrm-lital": [
+          "lital-mycrm"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "mycrm-lital-bb9f0"
+  }
+}
